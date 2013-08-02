@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Foundation 4</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+                    <h1>TL:DR;</h1>
+                    <h3>Foundation v4</h3>
+					<p>
+						<small>Created by <a href="http://jvivs.github.com">James Vivian</a> / <a href="http://twitter.com/jvivs">@jvivs</a></small>
+					</p>
+				</section>
+
+                <section>
+                    <section>
+                        <img height="300" width="400" src="http://dribbble.s3.amazonaws.com/users/25090/screenshots/1066712/yeti2.png" />
+                        <h3>"The most advanced responsive front-end framework in the world."</h3>
+                    </section>
+                    <section>
+                        <img src="http://artlogic1991.files.wordpress.com/2013/03/foundation4_yeti.png?w=625" />
+                    </section>
+                    <section>
+                        <h1>Really?</h1>
+                        <h3>Let's see&hellip;</h3>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Grids!</h1>
+                        <p>Now for all shapes and sizes.</p>
+                    </section>
+                    <section>
+                        <h3>Sensible defaults</h3>
+                        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+$screen: "only screen";
+$small: "only screen and (min-width:"#{$small-screen}")";
+$medium: "only screen and (min-width:"#{$medium-screen}")";
+$large: "only screen and (min-width:"#{$large-screen}")";
+$landscape: "only screen and (orientation: landscape)";
+$portrait: "only screen and (orientation: portrait)";
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h4><small>start small</small></h4>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+$small-screen: emCalc(768);
+</code></pre>
+                        <p style="margin-top: 2em;">12 columns instead of 4</p>
+                    </section>
+                    <section>
+                        <h1>
+                            <small>Step up to Medium*</small>
+                        </h1>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+$medium-screen: emCalc(1280);
+</code></pre>
+                        <p style="margin-top: 2em;">Separate medium grids enable a design to respond with <strong><em>finesse.</em></strong></p>
+                        <p><small>*planned for v5, early release included in v4.3</small></p>
+                    </section>
+                    <section>
+                        <h1>Take it LARGE</h1>
+<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+$medium-screen: emCalc(1280);
+</code></pre>
+                        <p style="margin-top: 2em;">Have lots of real estate? Take advantage!</p>
+                    </section>
+                    <section>
+                        <h4>
+                            But wait... there's more.
+                        </h4>
+                    </section>
+                    <section>
+                        <h2>
+                            Backwards compatible with v3 grids for better IE8 support.
+                        </h2>
+                    </section>
+                    <section>
+                        <h1>
+                            No pixel left behind.
+                        </h1>
+                    </section>
+                </section>
+
+
+                <section>
+                    <section>
+                        <h1>Buttons</h1>
+                        <p>Mix and match.</p>
+                    </section>
+                    <section>
+                        <h1>All shapes and sizes</h1>
+                        <ul>
+                            <li>.tiny</li>
+                            <li>.small</li>
+                            <li>.button</li>
+                            <li>.large</li>
+                            <li>.radius</li>
+                            <li>.round</li>
+                            <li>.expand</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <img src="img/buttons.png"/>
+                    </section>
+                    <section>
+                        <h3>Even ugly ones:</h3>
+                        <img src="img/ugly-button.png" />
+                    </section>
+                    <section>
+                        <h3>CSS overrides?</h3>
+                        <pre><code style="font-size: 8px; line-height: 1.2em;">
+&.active,
+&:active {
+    // prevent underline in firefox
+    text-decoration: none;
+    .icon {
+        opacity: .6;
+    }
+}
+
+&.open {
+    .icon {
+        color: $mainColor !important;
+        opacity: 1;
+    }
+}
+// reset button corners if necessary
+&.square {
+    @include border-radius(0);
+}
+
+/* Sizes */
+&.large {
+    font-size: 15px;
+    padding: 7px 16px 6px;
+    .icon.oversized.icon-append {
+        margin: 2px -6px -1px 3px;
+    }
+}
+/* Colors */
+// style is the same for all of these, so print them on one line to prevent repetition
+&.primary,
+&.success,
+&.alert,
+&.secondary,
+&.gradient {
+    border: 0;
+    &:hover {
+        border: 0;
+    }
+}
+// darken background color (no transition), keep all shadows the same
+@each $button-type in $button-types {
+    $type: nth($button-type, 1);
+    $color: nth($button-type, 2);
+    $active-color: nth($button-type, 3);
+    @if ($type == '.primary') {
+        @include button-colors($color, nth($active-color, 1), nth($active-color, 2));
+    }
+    &#{$type} {
+        @include button-colors($color, nth($active-color, 1), nth($active-color, 2));
+    }
+}
+// sharpen white-text on red bg
+&.alert {
+    @include sharp-text($white);
+}
+// dark text on light background
+&.secondary {
+    color: $btn-secondary-text-color;
+    .icon {
+        color: $black;
+    }
+    @include box-shadow(0 1px 0 darken($btnSecondaryColor, 15%), 0 0 1px transparentize(darken($btnSecondaryColor, 35%), .2), 0 1px 1px transparentize(darken($btnSecondaryColor, 25%), .2));
+    // light text on dark background
+    &.active,
+    &:active {
+        color: $white;
+        .icon {
+            color: $white;
+        }
+    }
+    // outer glow on :focus
+    &:focus {
+        @include box-shadow(0 1px 0 darken($btnSecondaryColor, 15%), 0 0 1px transparentize(darken($btnSecondaryColor, 25%), .2), 0 0 5px opacify($btn-secondary-text-color, 0.5));
+    }
+}
+// transperent button (on dark bg)
+&.transparent {
+    background-color: transparent;
+    @include box-shadow(none);
+    color: $txtColor;
+    .icon {
+        color: $black;
+        &.icon-white {
+            color: $white;
+        }
+    }
+
+    &.on-dark {
+        @include sharp-text(darken($white, 20%));
+        .icon {
+            color: $white;
+        }
+        &:hover,
+        &.active,
+        &:active {
+            color: white;
+            background-color: transparent;
+            @include box-shadow(none);
+        }
+    }
+}
+&.gradient {
+    @include background-image(linear-gradient(top, #fbfbfb, #e5e5e5));
+    color: $btnGradientColor;
+    background-color: transparent;
+    @include box-shadow(none);
+    &, &:hover {
+        border: 1px $imageBorderColor solid;
+    }
+    .icon {
+        opacity: 1;
+        color: $btnGradientColor;
+    }
+}
+                        </code></pre>
+                        <h5>They work, but get tedious after a while.</h5>
+                    </section>
+                    <section>
+                        <h1>Customize with SASS instead!</h1>
+                        <pre><code>
+// We use this to quickly create buttons with a single mixin. As @jaredhardy puts it, "the kitchen sink mixin"
+@mixin button($padding:$button-med, $bg:$primary-color, $radius:false, $full-width:false, $disabled:false, $is-input:false, $is-prefix:false) {
+  @include button-base;
+  @include button-size($padding, $full-width, $is-input);
+  @include button-style($bg, $radius, $disabled);
+}
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h1>Buttons in all flavors</h1>
+                        <ul>
+                            <li>Button groups</li>
+                            <li>Split buttons</li>
+                            <li>Dropdowns</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Wait, didn't dropdowns turn out to be kind of a pain?</h2>
+                    </section>
+                    <section>
+                    <pre><code>
+$('.some-dropdown-element').on('click', function () {
+    e.stopPropagation()
+    // do the rest of your stuff here
+});
+                    </code></pre>
+                        <p>Dropdowns have been rewritten and are now easier to style, and easier to handle with
+                            javascript.</p>
+                    </section>
+                    <section>
+                        <h1>Bonus:</h1>
+                        <h3>Anything can now host a dropdown</h3>
+                        <pre style="font-size: 14px;"><code>
+<a href="#" data-dropdown="drop1">Has Dropdown</a>
+<ul id="drop1" class="f-dropdown" data-dropdown-content>
+  <li><a href="#">This is a link</a></li>
+  <li><a href="#">This is another</a></li>
+  <li><a href="#">Yet another</a></li>
+</ul>
+
+<a href="#" data-dropdown="drop2">Has Content Dropdown</a>
+<ul id="drop2" class="f-dropdown content" data-dropdown-content>
+  <li><a href="#">This is a link</a></li>
+  <li><a href="#">This is another</a></li>
+  <li><a href="#">Yet another</a></li>
+</ul>
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Button all the things!</h3>
+                        <img src="img/all-the-things.png"/>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h1>Responsive Images</h1>
+                        <h3>with Interchange</h3>
+                    </section>
+                    <section>
+                        <h3>Images are one of the largest consumers of bandwidth.</h3>
+                    </section>
+                    <section>
+                        <h3>Serve the right size for the right screen.</h3>
+                    </section>
+                    <section>
+                        <h1>How?</h1>
+                    </section>
+                    <section>
+                        <h3>The same way we adjust the design to different devices&hellip;</h3>
+                        <h1>Media queries.</h1>
+                    </section>
+                    <section>
+                        <p>data-interchange="[image_path, (media query)], [image_path, (media query)]"</p>
+                        <pre><code>
+<img src="/path/to/default.jpg"
+        data-interchange="[/path/to/default.jpg, (default)], [/path/to/bigger-image.jpg, (large)]">
+<!-- or your own queries -->
+<img src="/path/to/default.jpg"
+        data-interchange="[/path/to/default.jpg, (only screen and (min-width: 1px))], [/path/to/bigger-image.jpg, (only screen and (min-width: 1280px))]">
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h1>Tell me more</h1>
+                    </section>
+                    <section>
+                        <h3>Sensible Defaults (again)</h3>
+                        <img src="img/image-media-queries.png" />
+                    </section>
+                    <section>
+                        <h3>Custom Queries</h3>
+                        <pre><code>
+$(document).foundation('interchange', {
+  named_queries : {
+    my_custom_query : 'only screen and (max-width: 200px)'
+  }
+});
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Retina support</h3>
+                        <p>(pixel-density is a media query too!)</p>
+                    </section>
+                    <section>
+                        <h3>Event notification</h3>
+                        <pre><code>
+$(document).on('replace', 'img', function (e, new_path, original_path) {
+    // replace handler
+});
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Respond to new images dynamically</h3>
+                        <pre><code>
+$(document).foundation('interchange', 'reflow');
+                        </code></pre>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h1>Topnav</h1>
+                        <h3>Mobile first, from the ground up.</h3>
+                    </section>
+                    <section>
+                        <h1>Click here:</h1>
+                        <a href="http://foundation.zurb.com">http://foundation.zurb.com</a>
+                    </section>
+                    <section>
+                        <p>insert sweet slide showing how top nav renders on multiple devices and screen sizes</p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h1>Notable Plugins</h1>
+                    </section>
+                    <section>
+                        <h1>Modals with Reveal</h1>
+                        <p>Mobile first (I tested). Create workflows with linked modals.</p>
+                    </section>
+                    <section>
+                        <h1>Thumbnail plugin</h1>
+                        <p>Built as a mixin</p>
+                    </section>
+                    <section>
+                        <ul>
+                            <li>Better modals with Reveal (they link together too)</li>
+                            <li>Thumbnail plugin (again, customize with mixins)</li>
+                            <li>Abide HTML5 form validation at your disposal</li>
+                            <li>Pretty error messages</li>
+                            <li>Tooltips too!</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h1>Under the hood</h1>
+                    </section>
+                    <section>
+                        <h1>emcalc is the new ms();</h1>
+                        <h3>Translate between ems and px</h3>
+                    </section>
+                    <section>
+                        <h1>Mixins, Mixins, Mixins</h1>
+                    </section>
+                    <section>
+                        <h3>Still semantic markup, clean(er) and lightly applied styles</h3>
+                    </section>
+                    <section>
+                        <h3>Dropped external SASS dependencies (Compass and Modular Scale)</h3>
+                    </section>
+                    <section>
+                        <h1>Zepto Support</h1>
+                        <h3>Worth checking out for mobile and modern devices.</h3>
+                    </section>
+                    <section>
+                        <p>9.7k vs 32k</p>
+                        <img src="http://cronkitehhh.personal.asu.edu/wp-content/uploads/2012/11/obama-not-bad.jpeg"/>
+                    </section>
+                    <section>
+                        <h1>Smoother upgrade path to v5</h1>
+                        <p style="font-size:12px;">(famous last words)</p>
+                    </section>
+                    <section>
+                        <h1>Lower profile Javascript Namespace</h1>
+                        <pre><code>
+$(document).foundation();
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Follow in (LukeW's) mobile first footsteps!</h3>
+                        <img src="http://cdn.shopify.com/s/files/1/0051/7692/products/ABA-hero-6.jpg?431" />
+                    </section>
+                    <section>
+                        <img src="http://www.preparetoplan.co.uk/images/learning_fun.gif"/>
+                        <h3>No, seriously.</h3>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h1>Recap:</h1>
+                    </section>
+                    <section>
+                        <h1>Mobile first.</h1>
+                    </section>
+                    <section>
+                        <h1>Sensible defaults.</h1>
+                    </section>
+                    <section>
+                        <h1>Learn from better code.</h1>
+                    </section>
+                    <section>
+                        <h1>Customize at will.</h1>
+                    </section>
+                    <section>
+                        <img src="http://foundation.zurb.com/images/device-bg4.png" />
+                    </section>
+                </section>
+
+				<section>
+					<h1>404 SLIDE_NOT_FOUND</h1>
+					<h3>BY James Vivian</h3>
+                    <p>jvivs @ {octo + bird}</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
