@@ -1,0 +1,21 @@
+# IntelliJ IDEA specific
+.idea/
+.idea_modules/
+*.iml
+
+# Sublime Text 2 specific
+.ensime
+.tags
+.tags_sorted_by_file
+
+# TextMate specific
+.tm_properties
+
+# Mac specific
+.DS_Store
+
+# Application specific
+/logs/application.log
+/.target/
+RUNNING_PID
+.sass-cache
